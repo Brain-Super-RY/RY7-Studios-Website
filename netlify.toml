@@ -7,7 +7,7 @@
   # Directory to publish
   publish = ".next"
 
-[plugins]
+[[plugins]]
   # Use the official Netlify plugin for Next.js
   # This will handle SSR, ISR, image optimization, and more.
-  - package = "@netlify/plugin-nextjs" 
+  package = "@netlify/plugin-nextjs"
