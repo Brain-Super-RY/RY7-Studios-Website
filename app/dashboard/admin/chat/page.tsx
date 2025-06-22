@@ -27,7 +27,7 @@ export default function ChatPage() {
   const [activeContact, setActiveContact] = useState(contacts[0]);
   const [newMessage, setNewMessage] = useState("");
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (newMessage.trim() === "") return;
     // In a real app, you'd send the message to a server
