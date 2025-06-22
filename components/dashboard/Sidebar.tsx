@@ -5,9 +5,16 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, ShoppingCart, Briefcase, User, Settings, X, ChevronLeft, BarChart2, ShoppingBag, Users, MessageCircle, Calendar, FileText, Layers, AlertCircle, Sun, Moon, Bell, Grid, List, Image, Video, Table, MapPin, Lock, HelpCircle, LogOut, Globe, ChevronDown, ChevronUp
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction, ReactNode } from 'react';
 
-const menu = [
+type MenuItem = {
+  label: string;
+  icon?: ReactNode;
+  href?: string;
+  sub?: MenuItem[];
+};
+
+const menu: MenuItem[] = [
   {
     label: 'Dashboards',
     icon: <LayoutDashboard />, // Analytics, Ecommerce
@@ -153,11 +160,18 @@ const menu = [
   },
 ];
 
-function SidebarMenu({ items, level = 0, openMenus, setOpenMenus, pathname }) {
+type SidebarMenuProps = {
+  items: MenuItem[];
+  level?: number;
+  openMenus: { [key: string]: boolean };
+  setOpenMenus: Dispatch<SetStateAction<{ [key: string]: boolean }>>;
+  pathname: string;
+};
+
+function SidebarMenu({ items, level = 0, openMenus, setOpenMenus, pathname }: SidebarMenuProps) {
   return (
     <ul className={level > 0 ? `pl-4 border-l border-gray-800` : ""}>
-      {items.map((item, idx) => {
-        const hasSub = !!item.sub;
+      {items.map((item) => {
         const isOpen = openMenus[item.label];
         const isActive = pathname === item.href;
         return (
@@ -167,13 +181,13 @@ function SidebarMenu({ items, level = 0, openMenus, setOpenMenus, pathname }) {
                 {item.icon && level === 0 && <span>{item.icon}</span>}
                 <span>{item.label}</span>
               </Link>
-              {hasSub && (
+              {item.sub && (
                 <button onClick={() => setOpenMenus((prev) => ({ ...prev, [item.label]: !isOpen }))} className="ml-2">
                   {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </button>
               )}
             </div>
-            {hasSub && isOpen && (
+            {item.sub && isOpen && (
               <SidebarMenu items={item.sub} level={level + 1} openMenus={openMenus} setOpenMenus={setOpenMenus} pathname={pathname} />
             )}
           </li>
@@ -183,9 +197,9 @@ function SidebarMenu({ items, level = 0, openMenus, setOpenMenus, pathname }) {
   );
 }
 
-const Sidebar = ({ isOpen, setOpen }: { isOpen: boolean, setOpen: (isOpen: boolean) => void }) => {
+const Sidebar = ({ isOpen, setOpen, userRole }: { isOpen: boolean, setOpen: Dispatch<SetStateAction<boolean>>, userRole: string }) => {
   const pathname = usePathname();
-  const [openMenus, setOpenMenus] = useState({});
+  const [openMenus, setOpenMenus] = useState<{[key: string]: boolean}>({});
 
   return (
     <>

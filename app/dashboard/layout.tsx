@@ -22,8 +22,8 @@ export default function DashboardLayout({
   useEffect(() => {
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) {
-        redirect('/login')
+  if (!user) {
+    redirect('/login')
         return
       }
       setUser(user)
@@ -62,8 +62,8 @@ export default function DashboardLayout({
       <div className={`flex-1 flex flex-col transition-all duration-300 ${isSidebarOpen ? 'md:ml-64' : 'md:ml-20'}`}>
         <Topbar toggleSidebar={() => setSidebarOpen(!isSidebarOpen)} />
         <main className="flex-grow p-4 sm:p-6 lg:p-8">
-          {children}
-        </main>
+        {children}
+      </main>
       </div>
     </div>
   )
