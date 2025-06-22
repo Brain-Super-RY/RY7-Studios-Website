@@ -16,7 +16,7 @@ export default async function SiteLayout({
 }: {
   children: React.ReactNode
 }) {
-  const supabase = createClient()
+  const supabase = createClient() // Reverted: removed await
   const { data: { user } } = await supabase.auth.getUser()
 
   return (

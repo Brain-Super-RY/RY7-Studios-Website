@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image'; // Import next/image
 import { motion } from 'framer-motion';
 import { Users } from 'lucide-react';
 import { AudienceChart } from '@/components/dashboard/AudienceChart';
@@ -55,7 +56,7 @@ export const AudienceOverview = () => {
             ))}
             <div className="flex -space-x-2 overflow-hidden mt-4">
                 {loginedAvatars.map(avatar => (
-                    <img key={avatar} className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-800" src={avatar} alt="User" />
+                    <Image key={avatar} className="inline-block rounded-full ring-2 ring-gray-800" src={avatar} alt="User" width={32} height={32} />
                 ))}
             </div>
         </motion.div>

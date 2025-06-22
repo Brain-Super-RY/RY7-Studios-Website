@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link';
+import Image from 'next/image'; // Import next/image
 import { usePathname } from 'next/navigation';
 import {
-  LayoutDashboard, ShoppingCart, Briefcase, User, Settings, X, ChevronLeft, BarChart2, ShoppingBag, Users, MessageCircle, Calendar, FileText, Layers, AlertCircle, Sun, Moon, Bell, Grid, List, Image, Video, Table, MapPin, Lock, HelpCircle, LogOut, Globe, ChevronDown, ChevronUp
+  LayoutDashboard, ShoppingCart, Briefcase, User, Settings, X, ChevronLeft, BarChart2, ShoppingBag, Users, MessageCircle, Calendar, FileText, Layers, AlertCircle, Sun, Moon, Bell, Grid, List, Image as LucideImage, Video, Table, MapPin, Lock, HelpCircle, LogOut, Globe, ChevronDown, ChevronUp
 } from 'lucide-react';
 import { useState, Dispatch, SetStateAction, ReactNode } from 'react';
 
@@ -212,11 +213,11 @@ const Sidebar = ({ isOpen, setOpen, userRole }: { isOpen: boolean, setOpen: Disp
       <aside className={`fixed top-0 left-0 h-screen bg-gray-900 text-white flex flex-col z-40 transition-all duration-300 ease-in-out ${isOpen ? 'w-72' : 'w-20'}`}>
         <div className={`p-4 border-b border-gray-800 flex items-center ${isOpen ? 'justify-between' : 'justify-center'}`}>
           <Link href="/" className={`flex items-center space-x-2 overflow-hidden ${!isOpen && 'w-0'}`}>
-            <img src="/logo.svg" alt="RY7 Studios" className="h-8 w-8 flex-shrink-0" />
+            <Image src="/logo.svg" alt="RY7 Studios" width={32} height={32} className="flex-shrink-0" /> {/* h-8 w-8 is 32px */}
             <span className="text-xl font-bold whitespace-nowrap">RY7 Studios</span>
           </Link>
           <button onClick={() => setOpen(!isOpen)} className="p-1 rounded-full hover:bg-gray-800">
-            {isOpen ? <ChevronLeft className="w-6 h-6"/> : <img src="/logo.svg" alt="RY7" className="h-8 w-8" />}
+            {isOpen ? <ChevronLeft className="w-6 h-6"/> : <Image src="/logo.svg" alt="RY7" width={32} height={32} />} {/* h-8 w-8 is 32px */}
           </button>
         </div>
         <nav className="flex-grow p-4 overflow-y-auto">

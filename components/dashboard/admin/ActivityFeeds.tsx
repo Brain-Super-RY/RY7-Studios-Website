@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image'; // Import next/image
 import { motion } from 'framer-motion';
 import { CheckCircle, AlertCircle, Star, MessageSquare } from 'lucide-react';
 
@@ -61,7 +62,7 @@ export const ActivityFeeds = () => {
                 <ul>
                     {recentCommentsData.map((item, i) => (
                          <li key={i} className="flex items-start gap-4 mb-4 last:mb-0">
-                            <img src={item.avatar} alt={item.user} className="w-10 h-10 rounded-full"/>
+                            <Image src={item.avatar} alt={item.user} width={40} height={40} className="rounded-full"/>
                             <div>
                                 <div className="font-semibold">{item.user}</div>
                                 <p className="text-sm text-gray-300">{item.comment}</p>

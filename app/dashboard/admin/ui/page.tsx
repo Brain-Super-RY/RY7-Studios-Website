@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { X, AlertTriangle, CheckCircle, Info, ShieldAlert } from "lucide-react";
+import Image from "next/image"; // Import next/image
 
 export default function UiElementsPage() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -43,7 +44,7 @@ export default function UiElementsPage() {
               <CheckCircle className="w-5 h-5 mr-3"/> <span className="font-medium">Success alert!</span> You successfully read this important alert message.
             </div>
             <div className="flex items-center p-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-400" role="alert">
-              <AlertTriangle className="w-5 h-5 mr-3"/> <span className="font-medium">Warning alert!</span> Better check yourself, you're not looking too good.
+              <AlertTriangle className="w-5 h-5 mr-3"/> <span className="font-medium">Warning alert!</span> Better check yourself, you&apos;re not looking too good.
             </div>
             <div className="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
               <ShieldAlert className="w-5 h-5 mr-3"/> <span className="font-medium">Danger alert!</span> Change a few things up and try submitting again.
@@ -85,7 +86,9 @@ export default function UiElementsPage() {
           <div>
             <h2 className="text-2xl font-semibold mb-4 border-b pb-2">Card</h2>
             <div className="bg-white dark:bg-gray-900/80 rounded-xl shadow-lg overflow-hidden">
-              <img className="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1559136555-2303baea1b33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Card image"/>
+              <div className="relative w-full h-48">
+                <Image className="object-cover" src="https://images.unsplash.com/photo-1559136555-2303baea1b33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Card image" layout="fill" objectFit="cover"/>
+              </div>
               <div className="p-6">
                 <h5 className="text-xl font-bold mb-2">Card Title</h5>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">

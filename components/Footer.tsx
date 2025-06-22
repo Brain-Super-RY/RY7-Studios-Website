@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
-import { Github, Twitter, Linkedin } from 'lucide-react'
+import { Github, Twitter, Linkedin, Facebook, Instagram } from 'lucide-react'
 
 const Footer = () => {
   return (
@@ -24,6 +23,12 @@ const Footer = () => {
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-transform duration-300 hover:scale-110">
               <Linkedin className="h-6 w-6" />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-transform duration-300 hover:scale-110">
+              <Facebook className="h-6 w-6" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-transform duration-300 hover:scale-110">
+              <Instagram className="h-6 w-6" />
             </a>
           </div>
         </div>

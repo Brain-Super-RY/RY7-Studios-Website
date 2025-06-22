@@ -46,7 +46,7 @@ const HelpPage = () => {
         {/* Contact Support Card */}
         <div className="bg-gray-800/50 backdrop-blur-md border border-gray-700 p-8 rounded-2xl shadow-lg flex flex-col items-center text-center">
             <LifeBuoy className="w-16 h-16 text-primary mb-6" />
-            <h2 className="text-2xl font-bold text-white mb-4">Can't Find an Answer?</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">Can&apos;t Find an Answer?</h2>
             <p className="text-gray-400 mb-6">Our support team is always ready to help. Reach out to us for any specific questions.</p>
             <Link href="/contact" className="mt-auto inline-flex items-center justify-center w-full px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors">
               <span>Contact Support</span>
