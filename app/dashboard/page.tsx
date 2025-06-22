@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  // const cookieStore = cookies(); // No longer needed here
+  const supabase = createClient(); // Called without arguments, Reverted: removed await
 
   const {
     data: { user },

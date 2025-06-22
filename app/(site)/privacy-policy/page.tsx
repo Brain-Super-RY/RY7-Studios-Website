@@ -29,7 +29,7 @@ const PrivacyPolicyPage = () => {
             </p>
             <ul>
               <li><strong>Supabase:</strong> Used for our database and authentication. Their privacy policy can be viewed <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">here</a>.</li>
-              <li><strong>Google Authentication:</strong> Allows you to sign up and log in using your Google account. Google's privacy policy can be found <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">here</a>.</li>
+              <li><strong>Google Authentication:</strong> Allows you to sign up and log in using your Google account. Google&apos;s privacy policy can be found <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">here</a>.</li>
             </ul>
             
             <h2>4. User Rights & Data Deletion</h2>

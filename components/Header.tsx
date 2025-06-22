@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image' // Import next/image
 import { Sun, Moon, X, Menu } from 'lucide-react'
 import { useState } from 'react'
 import type { User } from '@supabase/supabase-js'
@@ -25,7 +26,7 @@ export default function Header({ user }: { user: User | null }) {
       <header className="sticky top-0 z-50 w-full bg-gray-900/50 backdrop-blur-lg border-b border-gray-700">
         <div className="container mx-auto flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="RY7 Studios" className="h-10 w-10" />
+            <Image src="/logo.svg" alt="RY7 Studios" width={40} height={40} /> {/* h-10 w-10 is 40px */}
             <span className="text-xl font-bold text-white">RY7 Studios</span>
           </Link>
 

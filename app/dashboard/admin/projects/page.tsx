@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image"; // Import next/image
 import { motion } from "framer-motion";
 import { PlusCircle, Search, Filter, ChevronDown, MoreVertical } from "lucide-react";
 
@@ -114,7 +115,7 @@ export default function ProjectsPage() {
               
               <div className="flex -space-x-2 mb-4">
                 {project.team.map((avatar, j) => (
-                  <img key={j} src={`https://i.pravatar.cc/40?img=${i * 5 + j + 1}`} alt="member" className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-900" />
+                  <Image key={j} src={`https://i.pravatar.cc/40?img=${i * 5 + j + 1}`} alt="member" width={32} height={32} className="rounded-full border-2 border-white dark:border-gray-900" />
                 ))}
                 <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-semibold text-gray-600 dark:text-gray-300 border-2 border-white dark:border-gray-900">
                   +2

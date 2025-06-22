@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image"; // Import next/image
 import { motion } from "framer-motion";
 import { Search, Send, MoreVertical, Phone, Video, Smile, Paperclip } from "lucide-react";
 import { useState } from "react";
@@ -80,7 +81,7 @@ export default function ChatPage() {
               className={`flex items-center gap-4 p-4 cursor-pointer transition ${activeContact.id === contact.id ? 'bg-primary/10' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
             >
               <div className="relative">
-                <img src={contact.avatar} alt={contact.name} className="w-10 h-10 rounded-full" />
+                <Image src={contact.avatar} alt={contact.name} width={40} height={40} className="rounded-full" />
                 {contact.online && <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-500 border-2 border-white dark:border-gray-900"></span>}
               </div>
               <div className="flex-grow overflow-hidden">
@@ -97,7 +98,7 @@ export default function ChatPage() {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex-grow flex flex-col">
         <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <img src={activeContact.avatar} alt={activeContact.name} className="w-10 h-10 rounded-full" />
+            <Image src={activeContact.avatar} alt={activeContact.name} width={40} height={40} className="rounded-full" />
             <div>
               <h3 className="font-semibold text-lg">{activeContact.name}</h3>
               <p className="text-sm text-green-500">Online</p>
@@ -114,7 +115,7 @@ export default function ChatPage() {
           <div className="space-y-4">
             {(messages[activeContact.id] || []).map((msg, i) => (
               <div key={i} className={`flex items-end gap-2 ${msg.sender === 'me' ? 'justify-end' : ''}`}>
-                {msg.sender === 'other' && <img src={activeContact.avatar} alt="avatar" className="w-8 h-8 rounded-full"/>}
+                {msg.sender === 'other' && <Image src={activeContact.avatar} alt="avatar" width={32} height={32} className="rounded-full"/>}
                 <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${msg.sender === 'me' ? 'bg-primary text-white rounded-br-none' : 'bg-gray-200 dark:bg-gray-700 rounded-bl-none'}`}>
                   <p>{msg.text}</p>
                   <p className={`text-xs mt-1 ${msg.sender === 'me' ? 'text-blue-200' : 'text-gray-500'}`}>{msg.time}</p>

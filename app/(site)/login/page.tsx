@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image' // Import next/image
 import { motion } from 'framer-motion'
 import { GoogleIcon } from '@/components/icons/GoogleIcon'
 import { createClient } from '@/utils/supabase/client'
@@ -70,10 +71,11 @@ export default function LoginPage() {
       >
         <div className="text-center">
           <div className="flex justify-center mb-4">
-            <img
+            <Image
               src="/logo.svg"
               alt="RY7 Studios Logo"
-              className="w-16 h-16"
+              width={64} // Equivalent to w-16
+              height={64} // Equivalent to h-16
             />
           </div>
           <h1 className="text-3xl font-bold text-white">Welcome back</h1>
@@ -134,7 +136,7 @@ export default function LoginPage() {
 
           <div className="text-center text-sm text-gray-400">
             <p>
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/register" className="text-primary hover:underline font-semibold">
                 Sign up
               </Link>

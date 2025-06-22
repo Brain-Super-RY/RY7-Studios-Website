@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // Added useEffect
 import { motion } from 'framer-motion';
 import { Search, Filter } from 'lucide-react';
+import Image from 'next/image'; // Import next/image
+import { useDebounce } from '@/hooks/useDebounce'; // Import useDebounce
 
 // Placeholder data for services
 const services = [
@@ -65,7 +67,15 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => (
     transition={{ type: 'spring' }}
     className="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-lg border border-gray-700 hover:border-primary transition-colors"
   >
-    <img src={service.imageUrl} alt={service.title} className="w-full h-48 object-cover" />
+    <div className="relative w-full h-48"> {/* Added relative container for Image */}
+      <Image
+        src={service.imageUrl}
+        alt={service.title}
+        layout="fill" // Changed to fill
+        objectFit="cover" // Changed to objectFit
+        className="rounded-t-2xl" // Ensure top corners are rounded if needed
+      />
+    </div>
     <div className="p-4">
       <h3 className="text-lg font-bold text-white truncate">{service.title}</h3>
       <p className="text-sm text-gray-400">by {service.seller}</p>
@@ -83,12 +93,22 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => (
 );
 
 export default function ServicesPage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  
-  const filteredServices = services.filter(service =>
-    service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    service.seller.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const [inputValue, setInputValue] = useState('');
+  const debouncedSearchTerm = useDebounce(inputValue, 300); // 300ms delay
+  const [filteredServices, setFilteredServices] = useState(services);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setFilteredServices(
+        services.filter(service =>
+          service.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+          service.seller.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+        )
+      );
+    } else {
+      setFilteredServices(services);
+    }
+  }, [debouncedSearchTerm]);
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -111,8 +131,8 @@ export default function ServicesPage() {
           <input
             type="text"
             placeholder="Search for services or sellers..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
             className="w-full pl-12 pr-4 py-3 bg-gray-800/60 border border-gray-700 rounded-lg text-white focus:ring-primary focus:border-primary transition-all"
           />
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />

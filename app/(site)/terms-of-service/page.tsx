@@ -15,12 +15,12 @@ const TermsOfServicePage = () => {
             
             <h2>1. Usage License</h2>
             <p>
-              Permission is granted to temporarily download one copy of the materials on RY7 Studios' website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
+              Permission is granted to temporarily download one copy of the materials on RY7 Studios&apos; website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
             </p>
             
             <h2>2. Service Commitments</h2>
             <p>
-              As a "Seller", you commit to delivering services as described in your listings. As a "Buyer", you commit to providing clear requirements and timely payments. All users agree to communicate respectfully.
+              As a &quot;Seller&quot;, you commit to delivering services as described in your listings. As a &quot;Buyer&quot;, you commit to providing clear requirements and timely payments. All users agree to communicate respectfully.
             </p>
             
             <h2>3. User Conduct</h2>

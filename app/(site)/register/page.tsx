@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image' // Import next/image
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { createClient } from '@/utils/supabase/client'
@@ -54,14 +55,16 @@ export default function RegisterPage() {
       >
         {success ? (
           <div className="text-center text-white">
-            <img
+            <Image
               src="/logo.svg"
               alt="RY7 Studios Logo"
-              className="w-16 h-16 mx-auto mb-4"
+              width={64}
+              height={64}
+              className="mx-auto mb-4"
             />
             <h1 className="text-3xl font-bold">Check your email</h1>
             <p className="mt-4 text-gray-400">
-              We've sent a confirmation link to your email address.
+              We&apos;ve sent a confirmation link to your email address.
             </p>
             <p className="mt-2 text-gray-400">
               Please follow the link to complete your registration.
@@ -77,10 +80,11 @@ export default function RegisterPage() {
           <>
             <div className="text-center">
               <div className="flex justify-center mb-4">
-                <img
+                <Image
                   src="/logo.svg"
                   alt="RY7 Studios Logo"
-                  className="w-16 h-16"
+                  width={64}
+                  height={64}
                 />
               </div>
               <h1 className="text-3xl font-bold text-white">

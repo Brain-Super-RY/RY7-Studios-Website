@@ -7,6 +7,9 @@ const nextConfig = {
     }
     return config;
   },
+  images: {
+    domains: ['images.unsplash.com', 'i.pravatar.cc'],
+  },
 };
 
 module.exports = nextConfig;

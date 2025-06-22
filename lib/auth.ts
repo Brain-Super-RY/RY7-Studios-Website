@@ -12,7 +12,7 @@ export const PLANS = {
   PRO: 'pro'
 } as const
 
-export type Plan = typeof PLANS[keyof typeof ROLES]
+export type Plan = typeof PLANS[keyof typeof PLANS]
 
 export const FREE_PLAN_FEATURES = [
   'Basic profile listing',

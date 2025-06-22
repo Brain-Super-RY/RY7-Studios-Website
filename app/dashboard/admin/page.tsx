@@ -6,11 +6,14 @@ import { motion } from 'framer-motion'
 import { TrendingUp, Clock, Activity, Users, Chrome, BarChart2, Mail, Share2, MapPin, CheckCircle, AlertCircle, Star, Settings, X, Plus, UserPlus, Briefcase, List, MessageSquare } from 'lucide-react'
 import { Switch } from '@headlessui/react'
 import { AudienceChart } from '@/components/dashboard/AudienceChart'
-import { Tooltip } from '@mui/material'
+// import { Tooltip } from '@mui/material' // Commented out
 import { Dialog } from '@headlessui/react'
-import { Snackbar, Alert } from '@mui/material'
-import { BrowserTrafficSources } from '@/components/dashboard/admin/BrowserTrafficSources'
-import { ActivityFeeds } from '@/components/dashboard/admin/ActivityFeeds'
+// import { Snackbar, Alert } from '@mui/material' // Commented out
+import dynamic from 'next/dynamic'
+import Image from 'next/image' // Import next/image
+
+const BrowserTrafficSources = dynamic(() => import('@/components/dashboard/admin/BrowserTrafficSources').then(mod => mod.BrowserTrafficSources))
+const ActivityFeeds = dynamic(() => import('@/components/dashboard/admin/ActivityFeeds').then(mod => mod.ActivityFeeds))
 
 interface ModalData {
   title: string
@@ -415,11 +418,11 @@ export default function AdminDashboardPage() {
         </div>
       </Dialog>
 
-      <Snackbar open={toastOpen} autoHideDuration={6000} onClose={() => setToastOpen(false)}>
+      {/* <Snackbar open={toastOpen} autoHideDuration={6000} onClose={() => setToastOpen(false)}>
         <Alert onClose={() => setToastOpen(false)} severity="success" sx={{ width: '100%' }}>
           {toastMsg}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         {quickStats.map((stat, i) => (
@@ -443,15 +446,15 @@ export default function AdminDashboardPage() {
       <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl shadow p-8 mb-8 flex flex-col md:flex-row items-center justify-between">
         <div className="flex-grow">
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Welcome back, Admin!</h2>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">Here's what's happening with your projects today.</p>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">Here&apos;s what&apos;s happening with your projects today.</p>
         </div>
         <div className="w-full md:w-auto mt-6 md:mt-0 flex flex-wrap gap-3 justify-center">
           {quickActions.map((action, i) => (
-            <Tooltip key={i} title={action.label}>
-              <button className={`flex items-center justify-center w-12 h-12 rounded-full shadow-md hover:opacity-90 transition ${action.color}`}>
+            // <Tooltip key={i} title={action.label}>  // Commented out Tooltip
+              <button key={i} title={action.label} className={`flex items-center justify-center w-12 h-12 rounded-full shadow-md hover:opacity-90 transition ${action.color}`}>
                 {action.icon}
               </button>
-            </Tooltip>
+            // </Tooltip> // Commented out Tooltip
           ))}
         </div>
       </div>
@@ -481,7 +484,7 @@ export default function AdminDashboardPage() {
                 <div className="text-3xl font-bold mr-2">{audienceOverview.loginedVisitors}</div>
                 <div className="flex -space-x-2">
                   {loginedAvatars.map((avatar, i) => (
-                    <img key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800" src={avatar} alt={`avatar ${i + 1}`} />
+                    <Image key={i} className="rounded-full border-2 border-white dark:border-gray-800" src={avatar} alt={`avatar ${i + 1}`} width={32} height={32} />
                   ))}
                 </div>
               </div>

@@ -4,7 +4,7 @@ import NextAuth, {
   AuthOptions,
 } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import { supabase } from './supabaseClient'
+// import { supabase } from './supabaseClient' // Removed problematic import
 
 declare module 'next-auth' {
   interface Session {
@@ -41,7 +41,7 @@ export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!, // Corrected: Removed NEXT_PUBLIC_
     }),
   ],
   callbacks: {
