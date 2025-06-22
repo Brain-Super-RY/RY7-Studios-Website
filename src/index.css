@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 dark:bg-gray-900;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(249, 250, 251, 0.5);
+    @apply dark:bg-gray-800/80 dark:border-gray-700;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(to bottom right, theme('colors.primary.50'), white);
+    @apply dark:from-gray-800 dark:to-gray-900;
+  }
+}

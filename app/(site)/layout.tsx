@@ -1,0 +1,31 @@
+import { Inter } from 'next/font/google'
+import '../globals.css'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata = {
+  title: 'RY7 Studios',
+  description: 'The ultimate platform for digital services.',
+}
+
+export default async function SiteLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+  const { data: { user } } = await supabase.auth.getUser()
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header user={user} />
+      <main className="flex-grow">{children}</main>
+      <Footer />
+    </div>
+  )
+}

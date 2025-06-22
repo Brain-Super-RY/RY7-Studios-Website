@@ -1,0 +1,13 @@
+# Configuration for Netlify deployment
+# See https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Command to build the Next.js project
+  command = "npm run build"
+  # Directory to publish
+  publish = ".next"
+
+[plugins]
+  # Use the official Netlify plugin for Next.js
+  # This will handle SSR, ISR, image optimization, and more.
+  - package = "@netlify/plugin-nextjs" 
