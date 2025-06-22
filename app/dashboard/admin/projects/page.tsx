@@ -3,7 +3,25 @@
 import { motion } from "framer-motion";
 import { PlusCircle, Search, Filter, ChevronDown, MoreVertical } from "lucide-react";
 
-const projects = [
+const statusColors = {
+  'In Progress': 'bg-blue-500',
+  'Completed': 'bg-green-500',
+  'Pending': 'bg-yellow-500',
+  'Cancelled': 'bg-red-500'
+} as const;
+
+type ProjectStatus = keyof typeof statusColors;
+
+type Project = {
+  name: string;
+  category: string;
+  team: string[];
+  status: ProjectStatus;
+  progress: number;
+  deadline: string;
+};
+
+const projects: Project[] = [
   {
     name: 'Rizz App Development',
     category: 'Web Development',
@@ -45,13 +63,6 @@ const projects = [
     deadline: '15-Jul-2024'
   }
 ];
-
-const statusColors = {
-  'In Progress': 'bg-blue-500',
-  'Completed': 'bg-green-500',
-  'Pending': 'bg-yellow-500',
-  'Cancelled': 'bg-red-500'
-};
 
 export default function ProjectsPage() {
   return (
