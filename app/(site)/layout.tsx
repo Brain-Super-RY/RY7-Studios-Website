@@ -3,7 +3,6 @@ import '../globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,8 +16,7 @@ export default async function SiteLayout({
 }: {
   children: React.ReactNode
 }) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   return (
