@@ -19,7 +19,7 @@ const RangeSlider = () => (
 );
 
 // Dummy component for star rating
-const StarRating = ({ rating }) => (
+const StarRating = ({ rating }: { rating: number }) => (
   <div className="flex items-center">
     {Array.from({ length: 5 }).map((_, i) => (
       <Star key={i} className={`w-6 h-6 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
