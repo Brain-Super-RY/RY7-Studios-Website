@@ -4,7 +4,23 @@ import { motion } from "framer-motion";
 import { Search, Send, MoreVertical, Phone, Video, Smile, Paperclip } from "lucide-react";
 import { useState } from "react";
 
-const contacts = [
+// Type Definitions
+interface Message {
+  sender: 'me' | 'other';
+  text: string;
+  time: string;
+}
+
+interface Contact {
+  id: number;
+  name: string;
+  avatar: string;
+  online: boolean;
+  lastMessage: string;
+  unread?: number;
+}
+
+const contacts: Contact[] = [
   { id: 1, name: 'Alice', avatar: 'https://i.pravatar.cc/40?img=1', online: true, lastMessage: 'Hey, how are you?', unread: 2 },
   { id: 2, name: 'Bob', avatar: 'https://i.pravatar.cc/40?img=2', online: false, lastMessage: 'Can you check the new design?' },
   { id: 3, name: 'Charlie', avatar: 'https://i.pravatar.cc/40?img=3', online: true, lastMessage: 'See you at 5 PM.' },
@@ -12,7 +28,7 @@ const contacts = [
   { id: 5, name: 'Eve', avatar: 'https://i.pravatar.cc/40?img=5', online: true, lastMessage: 'Sure, I will send it.' },
 ];
 
-const messages = {
+const initialMessages: { [key: number]: Message[] } = {
   1: [
     { sender: 'other', text: 'Hey, how are you?', time: '10:00 AM' },
     { sender: 'me', text: 'I am good, thanks! How about you?', time: '10:01 AM' },
@@ -24,14 +40,25 @@ const messages = {
 };
 
 export default function ChatPage() {
-  const [activeContact, setActiveContact] = useState(contacts[0]);
+  const [activeContact, setActiveContact] = useState<Contact>(contacts[0]);
+  const [messages, setMessages] = useState(initialMessages);
   const [newMessage, setNewMessage] = useState("");
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (newMessage.trim() === "") return;
-    // In a real app, you'd send the message to a server
-    console.log({ contact: activeContact.id, message: newMessage });
+    
+    const newMsg: Message = {
+      sender: 'me',
+      text: newMessage,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setMessages(prev => ({
+      ...prev,
+      [activeContact.id]: [...(prev[activeContact.id] || []), newMsg]
+    }));
+
     setNewMessage("");
   };
 
